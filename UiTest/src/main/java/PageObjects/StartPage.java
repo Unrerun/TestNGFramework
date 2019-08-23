@@ -4,7 +4,7 @@ import TestPackage.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
-public  class StartPage {
+public class StartPage {
     private String url = "https://trello.com/";
 
     @FindBy

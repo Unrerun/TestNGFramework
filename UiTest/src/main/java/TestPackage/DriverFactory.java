@@ -3,24 +3,25 @@ package TestPackage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
-
+/**
+ * Это сильно упрощенный вариант реализации паттерна DriverFactory, поскольку задание тестовое
+ * не имеет смысла делать гибкую систему с поддержкой различного вида браузеров.
+ */
 public class DriverFactory {
-    static WebDriver driver;
+
+    private static WebDriver driver;
 
     public static WebDriver initialDriver() {
-        System.setProperty("webdriver.chrome.driver","C:\\chrome wd\\chromedriver.exe");
-         return driver =  new ChromeDriver();
+//        TODO реализовать подгрузку драйвера из помника
+        System.setProperty("webdriver.chrome.driver", "C:\\chrome wd\\chromedriver.exe");
+        return driver = new ChromeDriver();
     }
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void goToUrl(String url){
-         driver.get(url);
-    }
-    public static void delay(int delayInSeconds){
-        driver.manage().timeouts().implicitlyWait(delayInSeconds, TimeUnit.SECONDS);
+    public static void closeDriver() {
+        driver.close();
     }
 }
