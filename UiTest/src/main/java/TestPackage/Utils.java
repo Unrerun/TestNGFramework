@@ -1,5 +1,8 @@
 package TestPackage;
 
+import org.openqa.selenium.WebElement;
+
+import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,5 +18,12 @@ public class Utils {
 
     public static void delay(int delayInSeconds) {
         DriverFactory.getDriver().manage().timeouts().implicitlyWait(delayInSeconds, TimeUnit.SECONDS);
+    }
+
+    public static void waitUnteilPresent(WebElement element){
+        Timer timer = new Timer();
+        element.isDisplayed()
+
+        }
     }
 }
