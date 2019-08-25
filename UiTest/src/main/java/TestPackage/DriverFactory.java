@@ -2,9 +2,10 @@ package TestPackage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
- * Это сильно упрощенный вариант реализации паттерна DriverFactory, поскольку задание тестовое
+ * Это сильно упрощенный вариант реализации паттерна DriverFactory, поскольку задание тестовое,
  * не имеет смысла делать гибкую систему с поддержкой различного вида браузеров.
  */
 public class DriverFactory {
@@ -12,8 +13,7 @@ public class DriverFactory {
     private static WebDriver driver;
 
     public static WebDriver initialDriver() {
-//        TODO реализовать подгрузку драйвера из помника
-        System.setProperty("webdriver.chrome.driver", "C:\\chrome wd\\chromedriver.exe");
+        WebDriverManager.chromedriver().version("76.0.3809.126").setup();
         return driver = new ChromeDriver();
     }
 

@@ -1,5 +1,7 @@
 import PageObjects.StartPage;
 import TestPackage.*;
+
+
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -20,8 +22,7 @@ public class UiTest {
 
     @Test
     public void authorisationTest() {
-        Utils.goToUrl(this.url);
-        new StartPage().checkOpenedPage("Trello");
+        new StartPage().openStartPage(url, "Trello");
         new StartPage().pressLoginButton();
     }
 
