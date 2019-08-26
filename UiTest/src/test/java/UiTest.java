@@ -21,10 +21,12 @@ public class UiTest {
 
 
     @Test
-    public void openStartPageAndPressLoginButton() {
+    public void testTrello() {
         StartPage.openStartPage(TestData.getUrl());
         StartPage.pressLoginButton();
         AuthPage.doLogin(TestData.getUserLogin(), TestData.getUserPassword());
+        BoardPage.openBoards();
+        BoardPage.createNewBoard("trelloBoard");
     }
 
 }
