@@ -1,4 +1,4 @@
-import PageObjects.StartPage;
+import PageObjects.*;
 import TestPackage.*;
 
 
@@ -21,9 +21,13 @@ public class UiTest {
     private String url = "https://trello.com/";
 
     @Test
-    public void authorisationTest() {
+    public void openStartPageAndPressLoginButton() {
         new StartPage().openStartPage(url, "Trello");
         new StartPage().pressLoginButton();
+        AuthPage.doLogin("TrelloTestUser", "TrelloTestUser1");
     }
+
+//    @Test
+//    public void authPage(){
 
 }
