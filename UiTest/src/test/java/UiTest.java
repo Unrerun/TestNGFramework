@@ -8,9 +8,10 @@ import org.testng.annotations.Test;
 
 
 public class UiTest {
+
     @BeforeTest
     public void before() {
-        DriverFactory.initialDriver();
+        DriverFactory.initialDriver("CHROME");
     }
 
     @AfterTest
@@ -18,16 +19,12 @@ public class UiTest {
         DriverFactory.closeDriver();
     }
 
-    private String url = "https://trello.com/";
 
     @Test
     public void openStartPageAndPressLoginButton() {
-        new StartPage().openStartPage(url, "Trello");
-        new StartPage().pressLoginButton();
-        AuthPage.doLogin("TrelloTestUser", "TrelloTestUser1");
+        StartPage.openStartPage(TestData.getUrl());
+        StartPage.pressLoginButton();
+        AuthPage.doLogin(TestData.getUserLogin(), TestData.getUserPassword());
     }
-
-//    @Test
-//    public void authPage(){
 
 }
