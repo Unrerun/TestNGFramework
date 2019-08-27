@@ -10,6 +10,7 @@ public class TestData {
     private static String userLogin = "TrelloTestUser@yandex.ru";
     private static String userPassword = "TrelloTestUser";
     private static String url = "https://trello.com/";
+    private static String template = "TrelloTestUser";
 
     public static String getUserLogin() {
         return userLogin;
@@ -21,6 +22,10 @@ public class TestData {
 
     public static String getUrl() {
         return url;
+    }
+
+    public static String getTemplate() {
+        return template;
     }
 
 }
