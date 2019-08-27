@@ -1,24 +1,19 @@
 package PageObjects;
 
-import TestPackage.DriverFactory;
+import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.FindBy;
 
-public  class StartPage {
-    private String url = "https://trello.com/";
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-    @FindBy
-    By loginButton = By.xpath("/html/body/header/nav/div[2]/a[1]");
+public class StartPage {
 
-    public StartPage checkOpenedPage(String title) {
-        if (!DriverFactory.getDriver().getTitle().equals(title)) {
-            throw new IllegalStateException("This is not the " + title + " start page");
-        }
-        return this;
+    public static void openStartPage(String url) {
+        open(url);
     }
 
-    public StartPage pressLoginButton() {
-        DriverFactory.getDriver().findElement(loginButton).click();
-        return this;
+    public static void pressLoginButton() {
+        $(By.xpath("//a[@href='/login']")).waitUntil(Condition.visible, 5).click();
     }
+
 }
