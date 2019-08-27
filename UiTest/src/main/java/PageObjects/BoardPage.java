@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 public class BoardPage {
 
     public static void openBoards() {
-        sleep(10000);
+//        sleep(10000);
         $(By.xpath("//*[@data-test-id='header-boards-menu-button']")).click();
 
     }
