@@ -1,12 +1,15 @@
 import PageObjects.*;
 import TestPackage.*;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 
-
+import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Feature;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-
+@Test
 public class UiTest {
 
 //    Авторизация+
@@ -25,22 +28,22 @@ public class UiTest {
 //    Удаление карточки
 //    Выход из системы
     @BeforeTest
-    public void before() {
+    public void beforeTest() {
         DriverFactory.initialDriver("CHROME");
+        Selenide.open(TestData.getUrl());
+//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
     }
 
     @AfterTest
-    public void after() {
+    public void afterTest() {
         DriverFactory.closeDriver();
     }
 
 
-    @Test
+    @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        StartPage.openStartPage(TestData.getUrl());
-        StartPage.pressLoginButton();
-        AuthPage.doLogin(TestData.getUserLogin(), TestData.getUserPassword());
-        BoardPage.openBoards();
+        StartPage.authorisation();
+        AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
         BoardPage.createNewBoard();
         BoardPage.createNewList();
         BoardPage.addNewCard();
