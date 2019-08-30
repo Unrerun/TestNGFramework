@@ -29,7 +29,6 @@ public class BoardPage {
         $(By.xpath("//*[@class='js-add-a-card']")).click();
         $(By.xpath("//*[@class='list-card-composer-textarea js-card-title']")).val(TestData.getRandomTemplate());
         $(By.xpath("//*[@class='primary confirm mod-compact js-add-card']")).click();
-//        $(By.xpath("//*[@class='list-header-target js-editing-target']")).
     }
 
     //    $(By.xpath("//*[@class='list-header-target js-editing-target']"))
