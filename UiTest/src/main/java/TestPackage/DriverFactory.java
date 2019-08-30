@@ -1,20 +1,25 @@
 package TestPackage;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
+        import com.codeborne.selenide.WebDriverRunner;
+        import org.openqa.selenium.WebDriver;
+        import org.openqa.selenium.chrome.ChromeDriver;
+        import io.github.bonigarcia.wdm.WebDriverManager;
+        import org.openqa.selenium.firefox.FirefoxDriver;
+        import org.openqa.selenium.ie.InternetExplorerDriver;
 
 /**
- * Это сильно упрощенный вариант реализации паттерна DriverFactory
+ * Это сильно упрощенный вариант реализации DriverFactory. Драйвер подгружается при каждом запуске теста,
+ * нет необходимости конфигурировать переменные среды.
  */
 public class DriverFactory {
 
     private static WebDriver driver;
 
+    /**
+     * Метод спользуется для выбора инициализируемого браузера
+     *
+     * @param browser
+     */
     public static void initialDriver(String browser) {
         switch (browser) {
             case "CHROME":
@@ -30,18 +35,33 @@ public class DriverFactory {
                 driver = new InternetExplorerDriver();
                 break;
             default:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                initialDriver();
                 break;
         }
         WebDriverRunner.setWebDriver(driver);
     }
 
+    /**
+     * Метод спользуется для инициализации WebDriver chrome
+     */
+    public static void initialDriver() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+    }
+
+    /**
+     * Метод возвращает инициализированный драйвер
+     */
     public static WebDriver getDriver() {
         return driver;
     }
 
+    /**
+     * Метод закрывает инициализированный драйвер
+     */
     public static void closeDriver() {
-        driver.close();
+        if (driver != null) {
+            driver.close();
+        }
     }
 }

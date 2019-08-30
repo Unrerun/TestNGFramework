@@ -1,17 +1,17 @@
 package PageObjects;
 
-import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class AuthPage {
 
-
-    public static void doLogin(String username, String password) {
-        $(By.id("user")).waitUntil(Condition.visible,10).sendKeys(username);
-        $(By.id("password")).waitUntil(Condition.visible,10).sendKeys(password);
-        $(By.id("login")).waitUntil(Condition.visible,10).click();
+    @Step("Авторизация")
+    public static void login(String username, String password) {
+        $(By.id("user")).val(username);
+        $(By.id("password")).val(password);
+        $(By.id("login")).click();
     }
 
 }
