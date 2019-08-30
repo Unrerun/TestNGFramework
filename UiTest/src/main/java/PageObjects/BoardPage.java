@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class BoardPage {
 
+
     @Step("Создание новой доски")
     public static void createNewBoard() {
         $(By.xpath("//*[@data-test-id='header-boards-menu-button']")).click();
@@ -25,12 +26,55 @@ public class BoardPage {
     }
 
     @Step("Добавление новой карточки")
-    public static void addNewCard() {
+    public static void createNewCard() {
         $(By.xpath("//*[@class='js-add-a-card']")).click();
         $(By.xpath("//*[@class='list-card-composer-textarea js-card-title']")).val(TestData.getRandomTemplate());
         $(By.xpath("//*[@class='primary confirm mod-compact js-add-card']")).click();
     }
+    @Step("Переименование доски")
+    public static void renameBoard() {
+    }
 
+    @Step("Переименование нового списка по умолчанию")
+    public static void renameDefaultList() {
+    }
+
+    @Step("Переименование карточки")
+    public static void renameCard() {
+    }
+
+    @Step("Добавление чек-листа в карточке")
+    public static void addCheckList() {
+    }
+
+    @Step("Добавление двух элементов в чек лист")
+    public static void addSomeElementsToList() {
+    }
+
+    @Step("Переименование списка")
+    public static void renameList() {
+    }
+
+    @Step("Подтверждени одного из элементов чек-листа")
+    public static void acceptingCheckListElement() {
+    }
+
+    @Step("Перенос карточки в другой список")
+    public static void replaceCardToAnotherList() {
+    }
+
+    @Step("Удаление карточки")
+    public static void removeCard() {
+    }
+
+    @Step("Выход из системы")
+    public static void logoff() {
+    }
+
+    @Step("Добавление описания карточки")
+    public static void addCardDescription(){
+
+    };
     //    $(By.xpath("//*[@class='list-header-target js-editing-target']"))
 //    $(By.xpath("//*[@class='field field-autosave js-description-draft description card-description']"))
 //    $(By.xpath("//*[@class='primary confirm mod-submit-edit js-save-edit']"))
