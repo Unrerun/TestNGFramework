@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class StartPage {
 
     @Step("Переход на страницу авторизации")
-    public static void authorisation() {
+    public static void authorization() {
         $(By.xpath("//a[@href='/login']")).click();
     }
 

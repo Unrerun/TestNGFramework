@@ -17,6 +17,12 @@ public class BoardPage {
 
     }
 
+    @Step("Перименование доски")
+    public static void renameBoard(){
+        $(By.xpath("//*[@class='js-board-editing-target board-header-btn-text']")).click();
+//        $(By.xpath("//*[@class='board-name-input js-board-name-input']")).val(TestData.getRandomTemplate());
+    }
+
     @Step("Создание нового листа")
     public static void createNewList() {
 
@@ -41,5 +47,5 @@ public class BoardPage {
 //    $(By.xpath("//*[@class='checklist-item-checkbox enabled js-toggle-checklist-item']"))
 //    $(By.xpath("//*[@class='button-link js-move-card']"))
 //    $(By.xpath("//*[@class='js-select-list']"))
-
+//    $(By.xpath("//*[@class='js-board-editing-target board-header-btn-text']"))
 }

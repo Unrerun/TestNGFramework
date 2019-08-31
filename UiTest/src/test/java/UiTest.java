@@ -39,9 +39,10 @@ public class UiTest {
 
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        StartPage.authorisation();
+        StartPage.authorization();
         AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
         BoardPage.createNewBoard();
+        BoardPage.renameBoard();
         BoardPage.createNewList();
         BoardPage.addNewCard();
     }
