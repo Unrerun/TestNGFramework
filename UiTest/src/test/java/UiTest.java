@@ -10,21 +10,6 @@ import org.testng.annotations.Test;
 @Test
 public class UiTest {
 
-//    Авторизация
-//    Создание новой доски
-//    Переименование доски
-//    Переименование нового списка по умолчанию+
-//    Создание нового списка
-//    Переименование списка
-//    Создание новой карточки
-//    Переименование карточки
-//    Добавление описания к карточке
-//    Добавление чек-листа в карточке
-//    Добавление двух элементов в чек лист
-//    Подтверждени одного из элементов чек-листа
-//    Перенос карточки в другой список
-//    Удаление карточки
-//    Выход из системы
     @BeforeTest
     public void beforeTest() {
         DriverFactory.initialDriver("CHROME");
@@ -36,15 +21,39 @@ public class UiTest {
         DriverFactory.closeDriver();
     }
 
-
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        StartPage.authorization();
+        //    Авторизация
+        StartPage.authorisation();
         AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
+        //    Создание новой доски
         BoardPage.createNewBoard();
+        //    Переименование доски
         BoardPage.renameBoard();
+        //    Переименование нового списка по умолчанию
+        BoardPage.renameDefaultList();
+        //    Создание нового списка
         BoardPage.createNewList();
-        BoardPage.addNewCard();
+        //    Переименование списка
+        BoardPage.renameList();
+        //    Создание новой карточки
+        BoardPage.createNewCard();
+        //    Переименование карточки
+        BoardPage.renameCard();
+        //    Добавление описания к карточке
+        BoardPage.addCardDescription();
+        //    Добавление чек-листа в карточке
+        BoardPage.addCheckList();
+        //    Добавление двух элементов в чек лист
+        BoardPage.addSomeElementsToList();
+        //    Подтверждени одного из элементов чек-листа
+        BoardPage.acceptingCheckListElement();
+        //    Перенос карточки в другой список
+        BoardPage.replaceCardToAnotherList();
+        //    Удаление карточки
+        BoardPage.removeCard();
+        //    Выход из системы
+        BoardPage.logoff();
     }
 
 }
