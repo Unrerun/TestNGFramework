@@ -1,6 +1,7 @@
 import PageObjects.*;
 import TestPackage.*;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Feature;
 import org.testng.annotations.AfterTest;
@@ -14,6 +15,7 @@ public class UiTest {
     public void beforeTest() {
         DriverFactory.initialDriver("CHROME");
         Selenide.open(TestData.getUrl());
+        Configuration.timeout = 10000;
     }
 
     @AfterTest
@@ -23,16 +25,16 @@ public class UiTest {
 
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        //    Авторизация
-        StartPage.authorisation();
+        //    Авторизация+
+        StartPage.authorization();
         AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
-        //    Создание новой доски
+        //    Создание новой доски+
         BoardPage.createNewBoard();
-        //    Переименование доски
+        //    Переименование доски+
         BoardPage.renameBoard();
-        //    Переименование нового списка по умолчанию
+        //    Переименование нового списка по умолчанию+
         BoardPage.renameDefaultList();
-        //    Создание нового списка
+        //    Создание нового списка+
         BoardPage.createNewList();
         //    Переименование списка
         BoardPage.renameList();

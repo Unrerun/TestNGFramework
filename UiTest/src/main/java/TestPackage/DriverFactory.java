@@ -39,6 +39,7 @@ public class DriverFactory {
                 break;
         }
         WebDriverRunner.setWebDriver(driver);
+        driver.manage().window().maximize();
     }
 
     /**
