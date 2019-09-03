@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>UiTest</module>
+        <module>APITest</module>
     </modules>
 
     <properties>
