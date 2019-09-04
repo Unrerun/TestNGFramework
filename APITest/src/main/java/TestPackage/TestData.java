@@ -14,7 +14,7 @@ public class TestData {
     private static final String template = "TrelloTestUser";
     private static final String apiKey = "b52c8730b04f7610752d0013707aad19";
     private static final String auth = "https://trello.com/1/authorize?expiration=1day&name=MyPersonalToken&scope=read&response_type=token&key={4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a}";
-    private static final String apiToken = "577f87700cf555a346e339d8191a0e81b46d15bfa842bcfb8ff50b0e583d73bb";
+    private static final String apiToken = "4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a";
 
     /**
      * Получение логина пользователя
