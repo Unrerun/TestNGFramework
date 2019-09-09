@@ -7,41 +7,10 @@ package TestPackage;
 
 public class TestData {
 
-    private static final String userLogin = "TrelloTestUser@yandex.ru";
-    private static final String userPassword = "TrelloTestUser";
-    private static final String url = "https://trello.com/";
-    private static final String baseUrl = "https://api.trello.com/1/";
-    private static final String template = "TrelloTestUser";
-    private static final String apiKey = "b52c8730b04f7610752d0013707aad19";
-    private static final String auth = "https://trello.com/1/authorize?expiration=1day&name=MyPersonalToken&scope=read&response_type=token&key={4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a}";
-    private static final String apiToken = "4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a";
-
-    /**
-     * Получение логина пользователя
-     *
-     * @return
-     */
-    public static String getUserLogin() {
-        return userLogin;
-    }
-
-    /**
-     * Получение пароля пользователя
-     *
-     * @return
-     */
-    public static String getUserPassword() {
-        return userPassword;
-    }
-
-    /**
-     * Получение URL продукта
-     *
-     * @return
-     */
-    public static String getUrl() {
-        return url;
-    }
+    private static final String BASE_URL = "https://api.trello.com/1/";
+    private static final String TEMPLATE = "TrelloTestUser";
+    private static final String API_KEY = "b52c8730b04f7610752d0013707aad19";
+    private static final String API_TOKEN = "4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a";
 
     /**
      * Получение шаблона для ввода
@@ -49,7 +18,7 @@ public class TestData {
      * @return
      */
     public static String getTemplate() {
-        return template;
+        return TEMPLATE;
     }
 
     /**
@@ -58,7 +27,7 @@ public class TestData {
      * @return
      */
     public static String getRandomTemplate() {
-        return template.concat(String.valueOf(Math.random()));
+        return TEMPLATE.concat(String.valueOf(Math.random()));
     }
 
     /**
@@ -67,7 +36,7 @@ public class TestData {
      * @return
      */
     public static String getApiKey() {
-        return apiKey;
+        return API_KEY;
     }
 
     /**
@@ -76,15 +45,19 @@ public class TestData {
      * @return
      */
     public static String getApiToken() {
-        return apiToken;
+        return API_TOKEN;
     }
 
     /**
-     * Получение ключа
+     * Получение базовой ссылки
      *
      * @return
      */
     public static String getBaseUrl (){
-        return baseUrl;
+        return BASE_URL;
+    }
+
+    public static String getApiKeyAndToken(){
+        return API_KEY.concat(API_TOKEN);
     }
 }

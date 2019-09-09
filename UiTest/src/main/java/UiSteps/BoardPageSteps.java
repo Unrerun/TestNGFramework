@@ -1,4 +1,4 @@
-package PageObjects;
+package UiSteps;
 
 import TestPackage.TestData;
 import io.qameta.allure.Step;
@@ -8,7 +8,7 @@ import org.openqa.selenium.Keys;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class BoardPage {
+public class BoardPageSteps {
 
 
     @Step("Создание новой доски")
@@ -23,7 +23,6 @@ public class BoardPage {
     @Step("Перименование доски")
     public static void renameBoard() {
         $(By.xpath("//*[@class='js-board-editing-target board-header-btn-text']")).click();
-        //поскольку селенид перед вводом очищает поле, с элемента слетает фокус и он становится не полем для ввода, такие дела
         $(By.xpath("//input[@class='board-name-input js-board-name-input']")).sendKeys(TestData.getTemplate());
         $(By.xpath("//input[@class='board-name-input js-board-name-input']")).pressEnter();
     }
@@ -79,10 +78,9 @@ public class BoardPage {
         $(By.xpath("//*[@class='list-header-name mod-list-name js-list-name-input is-editing']")).sendKeys(Keys.ENTER);
     }
 
-    @Step("Подтверждени одного из элементов чек-листа")
+    @Step("Подтверждение одного из элементов чек-листа")
     public static void acceptingCheckListElement() {
         $(By.xpath("//*[@class='checklist-item-checkbox enabled js-toggle-checklist-item']")).doubleClick();
-//        Assert.assertTrue("Чеклист не был подтвержден",$(By.xpath("//*[@class='checklist-item-checkbox enabled js-toggle-checklist-item']")).isSelected());
     }
 
     @Step("Перенос карточки в другой список")
@@ -111,7 +109,6 @@ public class BoardPage {
         $(By.xpath("//*[@class='list-card-title js-card-name']")).click();
         $(By.xpath("//*[@class='field field-autosave js-description-draft description card-description']")).sendKeys(TestData.getRandomTemplate());
         $(By.xpath("//*[@class='primary confirm mod-submit-edit js-save-edit']")).click();
-
 
 
     }

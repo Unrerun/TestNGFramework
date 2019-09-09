@@ -1,4 +1,4 @@
-import PageObjects.*;
+import UiSteps.*;
 import TestPackage.*;
 
 import com.codeborne.selenide.Configuration;
@@ -10,6 +10,41 @@ import org.testng.annotations.Test;
 
 @Test
 public class UiTest {
+
+    @Feature("Тестирование UI \"Trello\"")
+    public void testTrello() {
+        //    Авторизация+
+        StartPage.authorization();
+        AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
+        //    Создание новой доски+
+        BoardPageSteps.createNewBoard();
+        //    Переименование доски+
+        BoardPageSteps.renameBoard();
+        //    Переименование нового списка по умолчанию+
+        BoardPageSteps.renameDefaultList();
+        //    Создание нового списка+
+        BoardPageSteps.createNewList();
+        //    Переименование списка
+        BoardPageSteps.renameList();
+        //    Создание новой карточки
+        BoardPageSteps.createNewCard();
+        //    Переименование карточки
+        BoardPageSteps.renameCard();
+        //    Добавление описания к карточке
+        BoardPageSteps.addCardDescription();
+        //    Добавление чек-листа в карточке
+        BoardPageSteps.addCheckList();
+        //    Добавление двух элементов в чек лист
+        BoardPageSteps.addSomeElementsToList();
+        //    Подтверждени одного из элементов чек-листа
+        BoardPageSteps.acceptingCheckListElement();
+        //    Перенос карточки в другой список
+        BoardPageSteps.replaceCardToAnotherList();
+        //    Удаление карточки
+        BoardPageSteps.removeCard();
+        //    Выход из системы
+        BoardPageSteps.logoff();
+    }
 
     @BeforeTest
     public void beforeTest() {
@@ -23,39 +58,5 @@ public class UiTest {
         DriverFactory.closeDriver();
     }
 
-    @Feature("Тестирование UI \"Trello\"")
-    public void testTrello() {
-        //    Авторизация+
-        StartPage.authorization();
-        AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
-        //    Создание новой доски+
-        BoardPage.createNewBoard();
-        //    Переименование доски+
-        BoardPage.renameBoard();
-        //    Переименование нового списка по умолчанию+
-        BoardPage.renameDefaultList();
-        //    Создание нового списка+
-        BoardPage.createNewList();
-        //    Переименование списка
-        BoardPage.renameList();
-        //    Создание новой карточки
-        BoardPage.createNewCard();
-        //    Переименование карточки
-        BoardPage.renameCard();
-        //    Добавление описания к карточке
-        BoardPage.addCardDescription();
-        //    Добавление чек-листа в карточке
-        BoardPage.addCheckList();
-        //    Добавление двух элементов в чек лист
-        BoardPage.addSomeElementsToList();
-        //    Подтверждени одного из элементов чек-листа
-        BoardPage.acceptingCheckListElement();
-        //    Перенос карточки в другой список
-        BoardPage.replaceCardToAnotherList();
-        //    Удаление карточки
-        BoardPage.removeCard();
-        //    Выход из системы
-        BoardPage.logoff();
-    }
 
 }

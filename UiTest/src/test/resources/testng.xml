@@ -4,5 +4,9 @@
         <classes>
             <class name="UiTest" />
         </classes>
+    <!--<test name="TrelloTestAPI">-->
+        <!--<classes>-->
+            <!--<class name="UiTest" />-->
+        <!--</classes>-->
     </test>
 </suite>

@@ -7,10 +7,10 @@ package TestPackage;
 
 public class TestData {
 
-    private static final String userLogin = "TrelloTestUser@yandex.ru";
-    private static final String userPassword = "TrelloTestUser";
+    private static final String userLogin = "TrelloUserTest@yandex.ru";
+    private static final String userPassword = "TrelloUserTest";
     private static final String url = "https://trello.com/";
-    private static final String template = "TrelloTestUser";
+    private static final String template = "TrelloUserTest";
 
     /**
      * Получение логина пользователя
