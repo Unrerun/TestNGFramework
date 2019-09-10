@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 @Test
-public class UiTest {
+public class UiTest extends Hooks{
 
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {

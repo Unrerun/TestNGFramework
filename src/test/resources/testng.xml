@@ -1,0 +1,14 @@
+
+<suite name="TestSuite">
+    <test name="TrelloUITest">
+        <classes>
+            <class name="TestNGFramework/UiTest/src/test/java/UiTest" />
+        </classes>
+    </test>
+    <test name="TrelloAPITest">
+        <classes>
+            <class name="TestNGFramework/APITest/src/test/java/APITest" />
+        </classes>
+    </test>
+
+</suite>

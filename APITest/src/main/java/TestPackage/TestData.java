@@ -8,7 +8,7 @@ package TestPackage;
 public class TestData {
 
     private static final String BASE_URL = "https://api.trello.com/1/";
-    private static final String TEMPLATE = "TrelloTestUser";
+    private static final String TEMPLATE = "TrelloTestAPI";
     private static final String API_KEY = "b52c8730b04f7610752d0013707aad19";
     private static final String API_TOKEN = "4486e625ecf7d67c88ae4c73e863b4abd5c65eedbd8f90b4abc178fb93639a1a";
 
@@ -55,6 +55,15 @@ public class TestData {
      */
     public static String getBaseUrl (){
         return BASE_URL;
+    }
+
+    /**
+     * Получение базовой ссылки
+     *
+     * @return
+     */
+    public static String getUrlForList (){
+        return "/boards/" + Storage.get("BoardId") + "/lists/open";
     }
 
     public static String getApiKeyAndToken(){
