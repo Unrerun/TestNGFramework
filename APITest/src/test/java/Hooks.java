@@ -11,8 +11,8 @@ public class Hooks {
         RestAssured.baseURI= TestData.getBaseUrl();
     }
 
-//    @AfterMethod
-//    public void afterMethod(ITestResult result) {
-//        System.out.println("method name:" + result.getMethod().getMethodName());
-//    }
+    @AfterMethod
+    public void afterMethod(ITestResult result) {
+        System.out.println("method name:" + result.getMethod().getMethodName());
+    }
 }

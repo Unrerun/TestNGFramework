@@ -1,15 +1,22 @@
 package UiSteps;
 
 import TestPackage.TestData;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.testng.annotations.AfterMethod;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class BoardPageSteps {
 
+    @Attachment
+    @AfterMethod
+    public void screenShoot(){
+        Listener.ScreenShooter.saveAllureScreenshotAfterStep();
+    }
 
     @Step("Создание новой доски")
     public static void createNewBoard() {

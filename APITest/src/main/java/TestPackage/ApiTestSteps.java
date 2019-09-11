@@ -15,12 +15,11 @@ public class ApiTestSteps {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .port(443)
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
                 .log().all()
-                .queryParam("name", TestData.getTemplate())
+                .queryParam("name", TestData.getRandomTemplate())
                 .when()
                 .post("/boards");
         Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
@@ -32,8 +31,7 @@ public class ApiTestSteps {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
-                .queryParam("name", TestData.getRandomTemplate())
+                .queryParam("name", TestData.getTemplate())
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
                 .log().all()
@@ -50,7 +48,6 @@ public class ApiTestSteps {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
                 .log().all()
@@ -61,7 +58,6 @@ public class ApiTestSteps {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("name", TestData.getTemplate())
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
@@ -73,12 +69,11 @@ public class ApiTestSteps {
                 .log().all();
     }
 
-    @Step("Создание нового листа")
+    @Step("Создание нового списка")
     public static void createNewList() {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("name", TestData.getTemplate())
                 .queryParam("idBoard", Storage.get("BoardId"))
                 .queryParam("key", TestData.getApiKey())
@@ -95,7 +90,6 @@ public class ApiTestSteps {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("value", TestData.getRandomTemplate())
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
@@ -112,7 +106,6 @@ public class ApiTestSteps {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("idList", Storage.get("createdListID"))
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
@@ -128,7 +121,6 @@ public class ApiTestSteps {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("name", TestData.getRandomTemplate())
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
@@ -145,7 +137,6 @@ public class ApiTestSteps {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .baseUri(TestData.getBaseUrl())//вынести в хуки
                 .queryParam("desc", TestData.getRandomTemplate())
                 .queryParam("key", TestData.getApiKey())
                 .queryParam("token", TestData.getApiToken())
@@ -159,23 +150,61 @@ public class ApiTestSteps {
 
     @Step("Добавление чек-листа в карточке")
     public static void addCheckList() {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .queryParam("name", TestData.getRandomTemplate())
+                .queryParam("key", TestData.getApiKey())
+                .queryParam("token", TestData.getApiToken())
+                .log().all()
+                .when()
+                .post("/cards/" + Storage.get("createdCardID") + "/checklists");
+        Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
+        Storage.put("checkListID", response.path("id").toString());
+    }
+
+    @Step("Добавление двух элементов в чек лист")
+    public static void addSomeElementsToList() {
+        for (int i = 0; i < 2; i++) {
             Response response = given()
                     .contentType(ContentType.JSON)
                     .accept(ContentType.JSON)
-                    .baseUri(TestData.getBaseUrl())//вынести в хуки
                     .queryParam("name", TestData.getRandomTemplate())
                     .queryParam("key", TestData.getApiKey())
                     .queryParam("token", TestData.getApiToken())
                     .log().all()
                     .when()
-                    .post("/cards/" + Storage.get("createdCardID") + "/checklists");
+                    .post("/checklists/" + Storage.get("checkListID") + "/checkItems");
             Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
-            Storage.put("checkListID", response.path("id").toString());
+            Storage.put("checkListItemID " + i, response.path("id").toString());
+            Storage.put("checkListItemName " + i, response.path("name").toString());
+
+        }
     }
 
-    @Step("Добавление двух элементов в чек лист")
-    public static void addSomeElementsToList() {
+    @Step("Подтверждение одного из элементов чек-листа")
+    public static void acceptingCheckListElement() {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .queryParam("state", "complete")
+                .queryParam("key", TestData.getApiKey())
+                .queryParam("token", TestData.getApiToken())
+                .log().all()
+                .when()
+                .put("/cards/" + Storage.get("createdCardID") + "/checkItem/" + Storage.get("checkListItemID 1"));
+        Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
+    }
+
+    @Step("Перенос карточки в другой список")
+    public static void replaceCardToAnotherList() {
+
+    }
+
+    @Step("Удаление карточки")
+    public static void removeCard() {
 
     }
 
 }
+

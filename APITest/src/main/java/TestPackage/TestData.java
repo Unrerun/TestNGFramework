@@ -1,6 +1,12 @@
 package TestPackage;
 
 
+import sun.util.calendar.BaseCalendar;
+import sun.util.calendar.LocalGregorianCalendar;
+
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Данный класс при обращении к методу возвращает определенные тестовые данные.
  */
@@ -18,7 +24,7 @@ public class TestData {
      * @return
      */
     public static String getTemplate() {
-        return TEMPLATE;
+        return TEMPLATE + Calendar.getInstance().getTime().toString();
     }
 
     /**
@@ -53,7 +59,7 @@ public class TestData {
      *
      * @return
      */
-    public static String getBaseUrl (){
+    public static String getBaseUrl() {
         return BASE_URL;
     }
 
@@ -62,11 +68,11 @@ public class TestData {
      *
      * @return
      */
-    public static String getUrlForList (){
+    public static String getUrlForList() {
         return "/boards/" + Storage.get("BoardId") + "/lists/open";
     }
 
-    public static String getApiKeyAndToken(){
+    public static String getApiKeyAndToken() {
         return API_KEY.concat(API_TOKEN);
     }
 }

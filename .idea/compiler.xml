@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="APITest" />
-        <module name="UiTest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="UiTest" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

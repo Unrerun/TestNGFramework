@@ -8,13 +8,13 @@ public class APITest extends Hooks {
     @Feature("Тестирование API \"Trello\"")
     public void testTrelloAPI() {
 
-        //    Создание новой доски+
+        //    Создание новой доски
         ApiTestSteps.createNewBoard();
-        //    Переименование доски+
+        //    Переименование доски
         ApiTestSteps.renameBoard();
         //    Переименование нового списка по умолчанию+
         ApiTestSteps.renameDefaultList();
-        //    Создание нового списка+
+        //    Создание нового списка
         ApiTestSteps.createNewList();
         //    Переименование списка
         ApiTestSteps.renameList();
@@ -27,12 +27,12 @@ public class APITest extends Hooks {
         //    Добавление чек-листа в карточке
         ApiTestSteps.addCheckList();
         //    Добавление двух элементов в чек лист
-//        ApiTestSteps.addSomeElementsToList();
-//        //    Подтверждени одного из элементов чек-листа
-//        ApiTestSteps.acceptingCheckListElement();
-//        //    Перенос карточки в другой список
-//        ApiTestSteps.replaceCardToAnotherList();
-//        //    Удаление карточки
-//        ApiTestSteps.removeCard();
+        ApiTestSteps.addSomeElementsToList();
+        //    Подтверждени одного из элементов чек-листа
+        ApiTestSteps.acceptingCheckListElement();
+        //    Перенос карточки в другой список
+        ApiTestSteps.replaceCardToAnotherList();
+        //    Удаление карточки
+        ApiTestSteps.removeCard();
     }
 }
