@@ -1,0 +1,8 @@
+
+<suite name="TestSuite1">
+    <test name="TrelloUITest">
+        <classes>
+            <class name="UiTest" />
+        </classes>
+    </test>
+</suite>

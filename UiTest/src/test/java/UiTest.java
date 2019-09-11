@@ -1,11 +1,7 @@
 import UiSteps.*;
 import TestPackage.*;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Feature;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 @Test
@@ -45,18 +41,5 @@ public class UiTest extends Hooks{
         //    Выход из системы
         BoardPageSteps.logoff();
     }
-
-    @BeforeTest
-    public void beforeTest() {
-        DriverFactory.initialDriver("CHROME");
-        Selenide.open(TestData.getUrl());
-        Configuration.timeout = 10000;
-    }
-
-    @AfterTest
-    public void afterTest() {
-        DriverFactory.closeDriver();
-    }
-
 
 }
