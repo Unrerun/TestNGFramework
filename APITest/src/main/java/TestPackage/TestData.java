@@ -72,7 +72,4 @@ public class TestData {
         return "/boards/" + Storage.get("BoardId") + "/lists/open";
     }
 
-    public static String getApiKeyAndToken() {
-        return API_KEY.concat(API_TOKEN);
-    }
 }
