@@ -8,7 +8,7 @@ public class Hooks {
 
     @BeforeTest
     public void beforeTest() {
-        RestAssured.baseURI= TestData.getBaseUrl();
+        RestAssured.baseURI = TestData.getBaseUrl();
     }
 
     @AfterMethod

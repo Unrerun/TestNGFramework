@@ -16,8 +16,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .port(443)
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .queryParam("name", TestData.getRandomTemplate())
                 .when()
@@ -32,8 +31,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("name", TestData.getTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/boards/" + Storage.get("BoardId"))
@@ -48,8 +46,7 @@ public class ApiTestSteps {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .get(TestData.getUrlForList());
@@ -59,8 +56,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("name", TestData.getTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/lists/" + Storage.get("defaultListId"))
@@ -76,8 +72,7 @@ public class ApiTestSteps {
                 .accept(ContentType.JSON)
                 .queryParam("name", TestData.getTemplate())
                 .queryParam("idBoard", Storage.get("BoardId"))
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .post("/lists");
@@ -91,8 +86,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("value", TestData.getRandomTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/lists/" + Storage.get("createdListID") + "/name")
@@ -107,8 +101,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("idList", Storage.get("createdListID"))
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .post("/cards");
@@ -122,8 +115,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("name", TestData.getRandomTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/cards/" + Storage.get("createdCardID"))
@@ -138,8 +130,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("desc", TestData.getRandomTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/cards/" + Storage.get("createdCardID"))
@@ -154,8 +145,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("name", TestData.getRandomTemplate())
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .post("/cards/" + Storage.get("createdCardID") + "/checklists");
@@ -170,15 +160,12 @@ public class ApiTestSteps {
                     .contentType(ContentType.JSON)
                     .accept(ContentType.JSON)
                     .queryParam("name", TestData.getRandomTemplate())
-                    .queryParam("key", TestData.getApiKey())
-                    .queryParam("token", TestData.getApiToken())
+                    .body(Utils.AuthParams())
                     .log().all()
                     .when()
                     .post("/checklists/" + Storage.get("checkListID") + "/checkItems");
             Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
             Storage.put("checkListItemID " + i, response.path("id").toString());
-            Storage.put("checkListItemName " + i, response.path("name").toString());
-
         }
     }
 
@@ -188,8 +175,7 @@ public class ApiTestSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .queryParam("state", "complete")
-                .queryParam("key", TestData.getApiKey())
-                .queryParam("token", TestData.getApiToken())
+                .body(Utils.AuthParams())
                 .log().all()
                 .when()
                 .put("/cards/" + Storage.get("createdCardID") + "/checkItem/" + Storage.get("checkListItemID 1"));
@@ -198,12 +184,32 @@ public class ApiTestSteps {
 
     @Step("Перенос карточки в другой список")
     public static void replaceCardToAnotherList() {
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .queryParam("idList", Storage.get("defaultListId"))
+                .body(Utils.AuthParams())
+                .log().all()
+                .when()
+                .put("/cards/" + Storage.get("createdCardID"))
+                .then().
+                assertThat().statusCode(200)
+                .log().all();
 
     }
 
     @Step("Удаление карточки")
     public static void removeCard() {
-
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(Utils.AuthParams())
+                .log().all()
+                .when()
+                .delete("/cards/" + Storage.get("createdCardID"))
+                .then().
+                assertThat().statusCode(200)
+                .log().all();
     }
 
 }
