@@ -46,10 +46,13 @@ public class ApiTestSteps {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .body(Utils.AuthParams())
+                //почему-то тут ругается на чарсет, пришлось кормить параметры напрямую
+                .queryParam("key", TestData.getApiKey())
+                .queryParam("token", TestData.getApiToken())
                 .log().all()
                 .when()
                 .get(TestData.getUrlForList());
+        Assert.assertEquals(response.getStatusCode(), 200, "Поле StatusCode не равно 200!");
         Storage.put("defaultListId", Utils.fieldFixer(response.path("id").toString()).get(0));
 
         given()

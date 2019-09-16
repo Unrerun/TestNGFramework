@@ -12,8 +12,8 @@ public class ScreenShooter {
         return ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
-//    @Attachment(value = "Fail screenshot", type = "image/png")
-//    public static byte[] saveAllureScreenshotOnFail() {
-//        return ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
-//    }
+    @Attachment(value = "Fail screenshot", type = "image/png")
+    public static byte[] saveAllureScreenshotOnFail() {
+        return ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
 }
