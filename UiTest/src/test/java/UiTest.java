@@ -1,27 +1,11 @@
-import PageObjects.*;
+import UiSteps.*;
 import TestPackage.*;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Feature;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 @Test
-public class UiTest {
-
-    @BeforeTest
-    public void beforeTest() {
-        DriverFactory.initialDriver("CHROME");
-        Selenide.open(TestData.getUrl());
-        Configuration.timeout = 10000;
-    }
-
-    @AfterTest
-    public void afterTest() {
-        DriverFactory.closeDriver();
-    }
+public class UiTest extends Hooks{
 
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
@@ -29,33 +13,33 @@ public class UiTest {
         StartPage.authorization();
         AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
         //    Создание новой доски+
-        BoardPage.createNewBoard();
+        BoardPageSteps.createNewBoard();
         //    Переименование доски+
-        BoardPage.renameBoard();
+        BoardPageSteps.renameBoard();
         //    Переименование нового списка по умолчанию+
-        BoardPage.renameDefaultList();
+        BoardPageSteps.renameDefaultList();
         //    Создание нового списка+
-        BoardPage.createNewList();
+        BoardPageSteps.createNewList();
         //    Переименование списка
-        BoardPage.renameList();
+        BoardPageSteps.renameList();
         //    Создание новой карточки
-        BoardPage.createNewCard();
+        BoardPageSteps.createNewCard();
         //    Переименование карточки
-        BoardPage.renameCard();
+        BoardPageSteps.renameCard();
         //    Добавление описания к карточке
-        BoardPage.addCardDescription();
+        BoardPageSteps.addCardDescription();
         //    Добавление чек-листа в карточке
-        BoardPage.addCheckList();
+        BoardPageSteps.addCheckList();
         //    Добавление двух элементов в чек лист
-        BoardPage.addSomeElementsToList();
+        BoardPageSteps.addSomeElementsToList();
         //    Подтверждени одного из элементов чек-листа
-        BoardPage.acceptingCheckListElement();
+        BoardPageSteps.acceptingCheckListElement();
         //    Перенос карточки в другой список
-        BoardPage.replaceCardToAnotherList();
+        BoardPageSteps.replaceCardToAnotherList();
         //    Удаление карточки
-        BoardPage.removeCard();
+        BoardPageSteps.removeCard();
         //    Выход из системы
-        BoardPage.logoff();
+        BoardPageSteps.logoff();
     }
 
 }
