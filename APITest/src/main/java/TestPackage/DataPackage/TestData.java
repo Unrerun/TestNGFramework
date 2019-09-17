@@ -1,17 +1,14 @@
-package TestPackage;
+package TestPackage.DataPackage;
 
-
-import sun.util.calendar.BaseCalendar;
-import sun.util.calendar.LocalGregorianCalendar;
 
 import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Данный класс при обращении к методу возвращает определенные тестовые данные.
  */
 
-public class TestData {
+ public class TestData {
 
     private static final String BASE_URL = "https://api.trello.com/1/";
     private static final String TEMPLATE = "TrelloTestAPI";
@@ -32,7 +29,7 @@ public class TestData {
      *
      * @return
      */
-    public static String getRandomTemplate() {
+    public  static String getRandomTemplate() {
         return TEMPLATE.concat(String.valueOf(Math.random()));
     }
 
@@ -68,8 +65,11 @@ public class TestData {
      *
      * @return
      */
-    public static String getUrlForList() {
-        return "/boards/" + Storage.get("BoardId") + "/lists/open";
-    }
 
+    public static HashMap<String, String> AuthParams() {
+        HashMap <String, String> params = new HashMap<>();
+        params.put("key", TestData.getApiKey());
+        params.put("token", TestData.getApiToken());
+        return params;
+    }
 }

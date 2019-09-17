@@ -1,11 +1,8 @@
-package TestPackage;
+package TestPackage.Utils;
 
 import java.util.HashMap;
 
 public final class Storage {
-
-    private Storage() {
-    }
 
     private static HashMap<String, String> storage = new HashMap<>();
 
