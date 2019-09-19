@@ -1,22 +1,25 @@
+import Listener.AllureStepListener;
 import UiSteps.*;
 import TestPackage.*;
 
 import io.qameta.allure.Feature;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({AllureStepListener.class})
 @Test
 public class UiTest extends Hooks{
 
     @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        //    Авторизация+
+        //    Авторизация
         StartPage.authorization();
         AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
-        //    Создание новой доски+
+        //    Создание новой доски
         BoardPageSteps.createNewBoard();
-        //    Переименование доски+
+        //    Переименование доски
         BoardPageSteps.renameBoard();
-        //    Переименование нового списка по умолчанию+
+        //    Переименование нового списка по умолчанию
         BoardPageSteps.renameDefaultList();
         //    Создание нового списка+
         BoardPageSteps.createNewList();

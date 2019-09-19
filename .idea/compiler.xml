@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="APITest" />
+        <module name="UiTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
