@@ -1,32 +1,48 @@
-import PageObjects.*;
+import Listener.AllureStepListener;
+import UiSteps.*;
 import TestPackage.*;
 
-
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import io.qameta.allure.Feature;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({AllureStepListener.class})
+@Test
+public class UiTest extends Hooks{
 
-public class UiTest {
-
-    @BeforeTest
-    public void before() {
-        DriverFactory.initialDriver("CHROME");
-    }
-
-    @AfterTest
-    public void after() {
-        DriverFactory.closeDriver();
-    }
-
-
-    @Test
+    @Feature("Тестирование UI \"Trello\"")
     public void testTrello() {
-        StartPage.openStartPage(TestData.getUrl());
-        StartPage.pressLoginButton();
-        AuthPage.doLogin(TestData.getUserLogin(), TestData.getUserPassword());
-        BoardPage.openBoards();
-        BoardPage.createNewBoard("trelloBoard");
+        //    Авторизация
+        StartPage.authorization();
+        AuthPage.login(TestData.getUserLogin(), TestData.getUserPassword());
+        //    Создание новой доски
+        BoardPageSteps.createNewBoard();
+        //    Переименование доски
+        BoardPageSteps.renameBoard();
+        //    Переименование нового списка по умолчанию
+        BoardPageSteps.renameDefaultList();
+        //    Создание нового списка+
+        BoardPageSteps.createNewList();
+        //    Переименование списка
+        BoardPageSteps.renameList();
+        //    Создание новой карточки
+        BoardPageSteps.createNewCard();
+        //    Переименование карточки
+        BoardPageSteps.renameCard();
+        //    Добавление описания к карточке
+        BoardPageSteps.addCardDescription();
+        //    Добавление чек-листа в карточке
+        BoardPageSteps.addCheckList();
+        //    Добавление двух элементов в чек лист
+        BoardPageSteps.addSomeElementsToList();
+        //    Подтверждени одного из элементов чек-листа
+        BoardPageSteps.acceptingCheckListElement();
+        //    Перенос карточки в другой список
+        BoardPageSteps.replaceCardToAnotherList();
+        //    Удаление карточки
+        BoardPageSteps.removeCard();
+        //    Выход из системы
+        BoardPageSteps.logoff();
     }
 
 }
